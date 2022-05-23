@@ -11,7 +11,7 @@ exports.updateUser = async (params) => {
 
   return new Promise((resolve, reject) => {
     db.query(
-      `SELECT * FROM users WHERE user_id = ? AND password = ?`,
+      `SELECT * FROM users WHERE id = ? AND password = ?`,
       [userId, hashedPassword],
       (err, result) => {
         if (err) reject({ message: err, statusCode: 500 });
@@ -22,7 +22,7 @@ exports.updateUser = async (params) => {
             statusCode: 400,
           });
         } else {
-          if (email === result[0].email && fullName === result[0].full_name) {
+          if (email === result[0].email && fullName === result[0].fname) {
             reject({
               message: "No new data has been provided",
               statusCode: 400,
@@ -31,16 +31,16 @@ exports.updateUser = async (params) => {
 
           let query = "";
 
-          if (email !== result[0].email && fullName !== result[0].full_name) {
-            query = `full_name = '${fullName}', email = '${email}'`;
+          if (email !== result[0].email && fullName !== result[0].fname) {
+            query = `fname = '${fullName}', email = '${email}'`;
           } else if (email !== result[0].email) {
             query = `email = '${email}'`;
           } else {
-            query = `full_name = '${fullName}'`;
+            query = `fname = '${fullName}'`;
           }
 
           db.query(
-            `UPDATE users SET ${query} WHERE user_id = ?`,
+            `UPDATE users SET ${query} WHERE id = ?`,
             [userId],
             (err, result) => {
               if (err) throw { message: err, statusCode: 500 };

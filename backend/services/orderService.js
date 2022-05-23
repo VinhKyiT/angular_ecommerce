@@ -11,6 +11,7 @@ exports.createOrder = async (params) => {
       `INSERT INTO orders (user_id) VALUES (?)`,
       [userId],
       (err, result) => {
+        console.log({ result });
         if (err) reject({ message: err, statusCode: 500 });
 
         if (result) {
@@ -29,6 +30,7 @@ exports.createOrder = async (params) => {
                 if (updatedQuantity > 0) {
                   productQuantity = updatedQuantity;
                 } else productQuantity = 0;
+                console.log({ newOrderId, prod });
 
                 db.query(
                   `INSERT INTO orders_details (order_id, product_id, quantity) VALUES (?,?,?)`,
@@ -39,7 +41,10 @@ exports.createOrder = async (params) => {
                     db.query(
                       `UPDATE products SET quantity = ${productQuantity} WHERE id = ${prod.id}`,
                       (err, result) => {
-                        if (err) reject({ message: err, statusCode: 500 });
+                        if (err) {
+                          console.log(err);
+                          reject({ message: err, statusCode: 500 });
+                        }
                         console.log(result);
                       }
                     );

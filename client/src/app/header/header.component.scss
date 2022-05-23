@@ -18,6 +18,16 @@
     > h3 {
     }
   }
+  &__logo {
+    width: 50px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    > img {
+      width: 100%;
+    }
+  }
   &__right {
     position: relative;
     .cart-counter {
@@ -50,6 +60,7 @@
   min-width: 280px;
   background-color: #fff;
   border: 1px solid #ccc;
+  z-index: 10000000;
   &__empty {
     padding: 12px;
     text-align: center;

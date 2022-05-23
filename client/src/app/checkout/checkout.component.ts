@@ -24,7 +24,7 @@ export class CheckoutComponent implements OnInit {
     this._auth.user.subscribe((user) => {
       if (user) {
         this.currentUser = user;
-        this.billingAddress[0].value = user.full_name;
+        this.billingAddress[0].value = user.fname;
         this.billingAddress[1].value = user.email;
       }
     });
@@ -39,22 +39,20 @@ export class CheckoutComponent implements OnInit {
   submitCheckout() {
     this.loading = true;
     setTimeout(() => {
-      this._cart
-        .submitCheckout(this.currentUser.user_id, this.cartData)
-        .subscribe(
-          (res: any) => {
-            console.log(res);
-            this.loading = false;
-            this.orderId = res.orderId;
-            this.products = res.products;
-            this.currentStep = 4;
-            this._cart.clearCart();
-          },
-          (err) => {
-            console.log(err);
-            this.loading = false;
-          }
-        );
+      this._cart.submitCheckout(this.currentUser.id, this.cartData).subscribe(
+        (res: any) => {
+          console.log(res);
+          this.loading = false;
+          this.orderId = res.orderId;
+          this.products = res.products;
+          this.currentStep = 4;
+          this._cart.clearCart();
+        },
+        (err) => {
+          console.log(err);
+          this.loading = false;
+        }
+      );
     }, 750);
   }
 
