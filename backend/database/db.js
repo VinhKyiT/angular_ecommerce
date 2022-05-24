@@ -7,8 +7,9 @@ const connection = mysql.createConnection({
   // database: process.env.DB_NAME,
   host: "localhost",
   user: "root",
-  password: "",
+  password: "root",
   database: "angular",
+  port: 8889,
 });
 
 connection.connect((err) => {

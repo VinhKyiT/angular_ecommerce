@@ -63,14 +63,17 @@
             [nzMax]="product.quantity > 0 ? product.quantity : 0"
             [nzStep]="1"
           ></nz-input-number>
-          <button
+          <!-- <button
             nz-button
             nzType="primary"
             (click)="addToCart()"
             [disabled]="quantity === 0"
           >
             Add to cart
-          </button>
+          </button> -->
+          <a (click)="addToCart()" [disabled]="quantity === 0"
+            ><span>Add to cart</span></a
+          >
         </div>
         <div class="category">
           <span>Category: </span> {{ product.category }}

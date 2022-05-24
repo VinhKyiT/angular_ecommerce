@@ -37,7 +37,7 @@
     </div>
   </div>
   <!-- SECOND STEP -->
-  <div *ngIf="currentStep === 2">
+  <!-- <div *ngIf="currentStep === 2">
     <div class="payment-container">
       <h2>Payment Details</h2>
       <form>
@@ -95,6 +95,72 @@
       >
         Continue
       </button>
+    </div>
+  </div> -->
+  <div *ngIf="currentStep === 2">
+    <div class="payment-container" style="border: none">
+      <div class="payment">
+        <div class="bg"></div>
+        <div class="card">
+          <img src="../../assets/chip.png" class="chip" />
+          <div class="logo"></div>
+          <h2 class="bankName" contenteditable="true">Bank Name</h2>
+          <form>
+            <div class="inputBox">
+              <span>Card No.</span>
+              <input
+                type="text"
+                placeholder="0123 4567 8901 2345"
+                maxlength="19"
+                name="cardNumber"
+                [(value)]="cardNumber"
+                [(ngModel)]="cardNumber"
+              />
+            </div>
+            <div class="inputBox">
+              <span>Card Holder</span>
+              <input
+                type="text"
+                placeholder="John Doe"
+                name="cardName"
+                [(value)]="cardName"
+                [(ngModel)]="cardName"
+              />
+            </div>
+            <div class="group">
+              <div class="inputBox">
+                <span>Valid Thru</span>
+                <input
+                  type="text"
+                  placeholder="MM/YY"
+                  maxlength="5"
+                  name="cardExpiry"
+                  [(value)]="cardExpiry"
+                  [(ngModel)]="cardExpiry"
+                />
+              </div>
+              <div class="inputBox">
+                <span>CCV</span>
+                <input
+                  type="password"
+                  placeholder="***"
+                  maxlength="4"
+                  name="cardCode"
+                  [(value)]="cardCode"
+                  [(ngModel)]="cardCode"
+                />
+              </div>
+            </div>
+          </form>
+        </div>
+        <button
+          class="btn"
+          [disabled]="!canPaymentSubmit()"
+          (click)="submitPayment()"
+        >
+          Confirm and Pay
+        </button>
+      </div>
     </div>
   </div>
   <!-- THIRD STEP -->
