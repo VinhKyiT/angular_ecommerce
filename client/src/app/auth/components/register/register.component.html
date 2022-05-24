@@ -1,4 +1,4 @@
-<div class="register-container">
+<!-- <div class="register-container">
   <div class="form-container">
     <h2>Sign Up to THMT</h2>
     <nz-alert
@@ -62,7 +62,6 @@
         </div>
       </div>
       <div class="cta-container">
-        <!-- <input type="submit" value="Sign up" /> -->
         <button
           nz-button
           type="submit"
@@ -76,5 +75,81 @@
         </div>
       </div>
     </form>
+  </div>
+</div> -->
+<div class="body">
+  <div class="container">
+    <nz-alert
+      *ngIf="errorMessage"
+      nzShowIcon
+      nzType="error"
+      [nzMessage]="errorMessage"
+      [ngStyle]="{ 'margin-bottom': '16px' }"
+    ></nz-alert>
+    <div class="item-container">
+      <h2 class="log-in">Sign up</h2>
+    </div>
+    <div class="item-container">
+      <a routerLink="/">
+        <img
+          src="../../../../assets/logo.png"
+          alt="logo"
+          width="70px"
+          height="auto"
+        />
+      </a>
+    </div>
+    <form #registerForm="ngForm" (ngSubmit)="onSubmit()">
+      <div class="form-input">
+        <label for="fullName" class="label">Full name</label>
+        <input
+          type="text"
+          name="fullName"
+          [(ngModel)]="fullName"
+          placeholder="Enter your full name"
+        />
+      </div>
+      <div class="form-input">
+        <label for="email" class="label">Email</label>
+        <input
+          type="email"
+          name="email"
+          placeholder="Enter email address"
+          [(ngModel)]="email"
+        />
+      </div>
+      <div class="form-input">
+        <label for="password" class="label">Password</label>
+        <input
+          type="password"
+          name="password"
+          placeholder="Enter your password"
+          [(ngModel)]="password"
+        />
+      </div>
+      <div class="form-input">
+        <label for="password" class="label">Password</label>
+        <input
+          type="password"
+          name="confirmPassword"
+          [(ngModel)]="confirmPassword"
+          placeholder="Repeat your password"
+        />
+      </div>
+      <div class="checkbox-container">
+        <input nz-input type="checkbox" />
+        <span>I agree to receive instructional and promotional emails</span>
+      </div>
+      <div class="checkbox-container">
+        <input nz-input type="checkbox" />
+        <span> I agree to THMT's Terms of Use & Privacy Policy</span>
+      </div>
+      <div>
+        <button type="submit">Sign up</button>
+      </div>
+    </form>
+    <div class="create-new">
+      <a routerLink="/login">Already have account? Log in</a>
+    </div>
   </div>
 </div>

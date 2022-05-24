@@ -47,39 +47,62 @@
     </form>
   </div>
 </div> -->
-<div class="login-container">
-  <nz-alert
-    *ngIf="error"
-    nzShowIcon
-    nzType="error"
-    [nzMessage]="error"
-    [ngStyle]="{ 'margin-bottom': '16px' }"
-  ></nz-alert>
-  <div class="login-box">
-    <h2>Login</h2>
+<div class="body">
+  <div class="container">
+    <nz-alert
+      *ngIf="error"
+      nzShowIcon
+      nzType="error"
+      [nzMessage]="error"
+      [ngStyle]="{ 'margin-bottom': '16px' }"
+    ></nz-alert>
+    <div class="item-container">
+      <h2 class="log-in">Log in</h2>
+    </div>
+    <div class="item-container">
+      <a routerLink="/">
+        <img
+          src="../../../../assets/logo.png"
+          alt="logo"
+          width="70px"
+          height="auto"
+        />
+      </a>
+    </div>
     <form (ngSubmit)="onSubmit()">
-      <div class="user-box">
-        <input type="email" name="email" [(ngModel)]="email" />
-        <label>Email</label>
+      <div class="form-input">
+        <label for="email" class="label">Email</label>
+        <input
+          type="email"
+          name="email"
+          placeholder="Enter email address"
+          [(ngModel)]="email"
+        />
       </div>
-      <div class="user-box">
-        <input type="password" name="password" [(ngModel)]="password" />
-        <label>Password</label>
+      <div class="form-input">
+        <label for="password" class="label">Password</label>
+        <input
+          type="password"
+          name="password"
+          placeholder="Enter your password"
+          [(ngModel)]="password"
+        />
       </div>
-      <a
-        ><button
-          nz-button
-          type="submit"
-          [disabled]="!canSubmit()"
-          [nzLoading]="loading"
-        >
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          Submit
-        </button></a
-      >
+      <div class="display-space-between">
+        <div>
+          <input type="checkbox" checked />
+          <label for="password" class="chekbox-label">Remember Me</label>
+        </div>
+        <div>
+          <a href="#">Forget password</a>
+        </div>
+      </div>
+      <div>
+        <button type="submit">Log in</button>
+      </div>
     </form>
+    <div class="create-new">
+      <a routerLink="/register">Don't have account? Create new</a>
+    </div>
   </div>
 </div>
