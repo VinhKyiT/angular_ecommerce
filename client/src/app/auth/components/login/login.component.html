@@ -1,4 +1,4 @@
-<div class="login-container">
+<!-- <div class="login-container">
   <div class="form-container">
     <h2>Sign In to THMT</h2>
     <nz-alert
@@ -44,6 +44,42 @@
       <div class="forgot-password">
         <a href="">Forgot password?</a>
       </div>
+    </form>
+  </div>
+</div> -->
+<div class="login-container">
+  <nz-alert
+    *ngIf="error"
+    nzShowIcon
+    nzType="error"
+    [nzMessage]="error"
+    [ngStyle]="{ 'margin-bottom': '16px' }"
+  ></nz-alert>
+  <div class="login-box">
+    <h2>Login</h2>
+    <form (ngSubmit)="onSubmit()">
+      <div class="user-box">
+        <input type="email" name="email" [(ngModel)]="email" />
+        <label>Email</label>
+      </div>
+      <div class="user-box">
+        <input type="password" name="password" [(ngModel)]="password" />
+        <label>Password</label>
+      </div>
+      <a
+        ><button
+          nz-button
+          type="submit"
+          [disabled]="!canSubmit()"
+          [nzLoading]="loading"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          Submit
+        </button></a
+      >
     </form>
   </div>
 </div>

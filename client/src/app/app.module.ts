@@ -35,6 +35,7 @@ import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { NzNotificationModule } from 'ng-zorro-antd/notification';
 import { NzProgressModule } from 'ng-zorro-antd/progress';
 import { NzTableModule } from 'ng-zorro-antd/table';
+import { NzRateModule } from 'ng-zorro-antd/rate';
 import { HomeSliderComponent } from './home/home-slider/home-slider.component';
 
 registerLocaleData(en);
@@ -74,6 +75,7 @@ registerLocaleData(en);
     NzNotificationModule,
     NzProgressModule,
     NzTableModule,
+    NzRateModule,
   ],
   providers: [
     authInterceptorProviders,
