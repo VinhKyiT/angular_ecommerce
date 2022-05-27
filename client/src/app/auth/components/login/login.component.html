@@ -73,6 +73,7 @@
       <div class="form-input">
         <label for="email" class="label">Email</label>
         <input
+          nz-input
           type="email"
           name="email"
           placeholder="Enter email address"
@@ -98,7 +99,7 @@
         </div>
       </div>
       <div>
-        <button type="submit">Log in</button>
+        <button type="submit" [disabled]="!canSubmit()">Log in</button>
       </div>
     </form>
     <div class="create-new">

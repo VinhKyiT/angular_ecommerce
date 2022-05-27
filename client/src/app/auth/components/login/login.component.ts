@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Form, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -12,7 +13,7 @@ export class LoginComponent implements OnInit {
   password = '';
   error = '';
   loading = false;
-
+  validateForm!: FormGroup;
   constructor(private _auth: AuthService, private _router: Router) {}
 
   ngOnInit(): void {}

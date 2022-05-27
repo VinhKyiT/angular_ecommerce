@@ -32,6 +32,7 @@
 <div class="card">
   <div class="imgBx" routerLink="/product/{{ id }}">
     <img src="{{ image }}" />
+    <p>{{ title }}</p>
   </div>
   <div class="details">
     <h3>{{ title }}</h3>
@@ -40,7 +41,9 @@
       {{ short_desc }}
     </p>
     <div class="group">
-      <h2><sup>$</sup>{{ price }}</h2>
+      <h2>{{ price | currency: "VND" }}</h2>
+    </div>
+    <div class="group">
       <a
         (click)="
           onAdd({

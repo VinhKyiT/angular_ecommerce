@@ -5,6 +5,7 @@ const db = require("../database/db");
 // GET ALL PRODUCTS
 router.get("/", async (req, res) => {
   const { page = 1, limit = 10 } = req.query;
+  console.log(req.query);
 
   let startValue;
   let endValue;
@@ -23,7 +24,10 @@ router.get("/", async (req, res) => {
             c.id = p.cat_id LIMIT ${startValue}, ${limit}`,
     (err, results) => {
       if (err) console.log(err);
-      else res.json(results);
+      else {
+        console.log({ results });
+        res.json(results);
+      }
     }
   );
 });

@@ -11,7 +11,11 @@
         *ngIf="showcaseImages.length === 0"
       >
         <ng-template swiperSlide [zoom]="true">
-          <img src="{{ product.image }}" alt="`Product image`" />
+          <img
+            src="{{ product.image }}"
+            alt="`Product image`"
+            style="margin-top: 50px; width: 25%; height: auto"
+          />
         </ng-template>
       </swiper>
       <!-- Multiple images -->
@@ -27,7 +31,11 @@
           [zoom]="true"
           *ngFor="let image of showcaseImages; index as i"
         >
-          <img src="{{ image }}" alt="`Product image`" />
+          <img
+            src="{{ image }}"
+            alt="`Product image`"
+            style="margin-top: 50px; width: 50%; height: auto"
+          />
         </ng-template>
       </swiper>
     </div>
@@ -50,7 +58,7 @@
         >
       </div>
       <div class="price-container">
-        <h2 class="price">{{ product.price | currency: "USD" }}</h2>
+        <h2 class="price">{{ product.price | currency: "VND" }}</h2>
         <span
           class="availability"
           [ngStyle]="{ color: quantity > 0 ? 'inherit' : 'red' }"

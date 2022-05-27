@@ -14,6 +14,8 @@ export class RegisterComponent implements OnInit {
   password = '';
   confirmPassword = '';
   errorMessage = '';
+  check1 = false;
+  check2 = false;
   loading = false;
   constructor(
     private _api: ApiService,
@@ -54,7 +56,12 @@ export class RegisterComponent implements OnInit {
   }
 
   canSubmit(): boolean {
-    return this.fullName && this.email && this.password && this.confirmPassword
+    return this.fullName &&
+      this.email &&
+      this.password &&
+      this.confirmPassword &&
+      this.check1 &&
+      this.check2
       ? true
       : false;
   }

@@ -1,3 +1,4 @@
+import { CategoryService } from './../services/category.service';
 import {
   Component,
   OnInit,
@@ -16,23 +17,14 @@ import { Products, Product } from '../shared/models/product.model';
 })
 export class HomeComponent implements OnInit {
   products: Product[] = [];
-  categories: any[] = [
-    {
-      name: 'Laptops',
-    },
-    {
-      name: 'Accessories',
-    },
-    {
-      name: 'Cameras',
-    },
-  ];
+  categories: any[] = [];
   loading = false;
   productPageCounter = 1;
   additionalLoading = false;
 
   constructor(
     private productService: ProductService,
+    private categoryService: CategoryService,
     private cartService: CartService
   ) {}
 
@@ -54,6 +46,16 @@ export class HomeComponent implements OnInit {
         (res: any) => {
           console.log(res);
           this.products = res;
+          this.loading = false;
+        },
+        (err) => {
+          console.log(err);
+          this.loading = false;
+        }
+      );
+      this.categoryService.getAllCategories().subscribe(
+        (res: any) => {
+          this.categories = res;
           this.loading = false;
         },
         (err) => {

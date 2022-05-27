@@ -173,7 +173,7 @@
           <div><span>Item(s)</span> {{ cartData.products.length }}</div>
           <div><span>Payment method</span> Credit</div>
           <div>
-            <span>Order total</span> {{ cartData.total | currency: "USD" }}
+            <span>Order total</span> {{ cartData.total | currency: "VND" }}
           </div>
         </div>
         <button
@@ -196,8 +196,8 @@
               {{ item.title }}
             </div>
             <div class="item-total">
-              {{ item.price | currency: "USD" }} x {{ item.quantity }} =
-              {{ item.quantity * item.price | currency: "USD" }}
+              {{ item.price | currency: "VND" }} x {{ item.quantity }} =
+              {{ item.quantity * item.price | currency: "VND" }}
             </div>
           </div>
         </div>
@@ -230,8 +230,8 @@
               {{ item.title }}
             </div>
             <div class="item-total">
-              {{ item.price | currency: "USD" }} x {{ item.quantity }} =
-              {{ item.quantity * item.price | currency: "USD" }}
+              {{ item.price | currency: "VND" }} x {{ item.quantity }} =
+              {{ item.quantity * item.price | currency: "VND" }}
             </div>
           </div>
         </div>

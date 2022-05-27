@@ -137,15 +137,15 @@
         />
       </div>
       <div class="checkbox-container">
-        <input nz-input type="checkbox" />
+        <input nz-input type="checkbox" name="check1" [(ngModel)]="check1" />
         <span>I agree to receive instructional and promotional emails</span>
       </div>
       <div class="checkbox-container">
-        <input nz-input type="checkbox" />
+        <input nz-input type="checkbox" name="check2" [(ngModel)]="check2" />
         <span> I agree to THMT's Terms of Use & Privacy Policy</span>
       </div>
       <div>
-        <button type="submit">Sign up</button>
+        <button type="submit" [disabled]="!canSubmit()">Sign up</button>
       </div>
     </form>
     <div class="create-new">
