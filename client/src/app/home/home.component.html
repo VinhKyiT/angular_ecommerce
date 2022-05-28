@@ -12,6 +12,7 @@
         [slidesPerView]="screenWidth > 1200 ? 3 : 1"
         [spaceBetween]="50"
         [pagination]="true"
+        [autoplay]="true"
         [loop]="true"
       >
         <ng-template swiperSlide *ngFor="let c of categories">
@@ -53,6 +54,7 @@
     <button
       nz-button
       (click)="showMoreProducts()"
+      [disabled]="isEndList"
       [nzLoading]="additionalLoading"
     >
       Show more

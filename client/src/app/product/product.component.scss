@@ -3,6 +3,9 @@
   &__image {
     margin-bottom: 24px;
     text-align: center;
+    img {
+      border-radius: 20px;
+    }
   }
   &__details {
     margin: 0 auto;

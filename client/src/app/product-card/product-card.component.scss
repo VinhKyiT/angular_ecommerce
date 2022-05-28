@@ -80,6 +80,7 @@
   align-items: center;
   z-index: 10;
   flex-direction: column;
+  cursor: pointer;
 }
 .card .imgBx img {
   max-width: 230px;
@@ -92,6 +93,8 @@
   text-transform: uppercase;
   color: #000;
   opacity: 1;
+  text-align: center;
+  max-width: 300px;
   transition: 0.3s ease-in-out;
 }
 .card:hover .imgBx img {

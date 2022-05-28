@@ -31,7 +31,7 @@ export class CartService {
     });
   }
 
-  addProduct(params): void {
+  addProduct(params: any): void {
     const { id, price, quantity, image, title, maxQuantity } = params;
     const product = { id, price, quantity, image, title, maxQuantity };
 

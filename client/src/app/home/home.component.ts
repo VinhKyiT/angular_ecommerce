@@ -21,6 +21,7 @@ export class HomeComponent implements OnInit {
   loading = false;
   productPageCounter = 1;
   additionalLoading = false;
+  isEndList = false;
 
   constructor(
     private productService: ProductService,
@@ -72,7 +73,11 @@ export class HomeComponent implements OnInit {
     setTimeout(() => {
       this.productService.getAllProducts(9, this.productPageCounter).subscribe(
         (res: any) => {
-          console.log(res);
+          console.log({ res });
+          if (res?.length === 0) {
+            console.log('end list');
+            this.isEndList = true;
+          }
           this.products = [...this.products, ...res];
           this.additionalLoading = false;
         },

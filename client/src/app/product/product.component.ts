@@ -74,13 +74,15 @@ export class ProductComponent implements OnInit {
   }
 
   addToCart(): void {
-    this._cart.addProduct({
-      id: this.id,
-      price: this.product.price,
-      quantity: this.quantity,
-      image: this.product.image,
-      title: this.product.title,
-      maxQuantity: this.product.quantity,
-    });
+    if (this.quantity > 0) {
+      this._cart.addProduct({
+        id: this.id,
+        price: this.product.price,
+        quantity: this.quantity,
+        image: this.product.image,
+        title: this.product.title,
+        maxQuantity: this.product.quantity,
+      });
+    }
   }
 }
