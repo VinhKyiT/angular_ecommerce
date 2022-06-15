@@ -22,12 +22,10 @@ export class ProductService {
     });
   }
 
-  getProductsByCategory(category: string): Observable<Products> {
-    return this.http.get<Products>(this.url + 'products', {
-      params: {
-        category: category,
-      },
-    });
+  getProductsByCategory(categoryId: string): Observable<Products> {
+    return this.http.get<Products>(
+      this.url + 'products/category/' + categoryId
+    );
   }
 
   getSingleProduct(id: Number): Observable<any> {

@@ -88,4 +88,21 @@ export class HomeComponent implements OnInit {
       );
     }, 500);
   }
+
+  getProductsByCategory(category: string): void {
+    this.loading = true;
+    setTimeout(() => {
+      this.productService.getProductsByCategory(category).subscribe(
+        (res: any) => {
+          console.log(res);
+          this.products = [...res];
+          this.loading = false;
+        },
+        (err) => {
+          console.log(err);
+          this.loading = false;
+        }
+      );
+    }, 500);
+  }
 }
