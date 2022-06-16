@@ -4,6 +4,7 @@ const {
   getProductById,
   getAllProduct,
   getProductByCategory,
+  addProduct
 } = require("../controllers/productController");
 const router = express.Router();
 
@@ -19,4 +20,6 @@ router.get("/:productId", getProductById);
 // GET PRODUCT BY CATEGORY
 router.get("/category/:categoryId", getProductByCategory);
 
+// ADD PRODUCT
+router.post("/add", addProduct);
 module.exports = router;
