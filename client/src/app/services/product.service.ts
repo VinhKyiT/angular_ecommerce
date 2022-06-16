@@ -23,9 +23,11 @@ export class ProductService {
   }
 
   getProductsByCategory(categoryId: string): Observable<Products> {
-    return this.http.get<Products>(
-      this.url + 'products/category/' + categoryId
-    );
+    const url =
+      categoryId === 'Tất cả'
+        ? 'products/all'
+        : 'products/category/' + categoryId;
+    return this.http.get<Products>(this.url + url);
   }
 
   getSingleProduct(id: Number): Observable<any> {

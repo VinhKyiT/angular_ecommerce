@@ -7,7 +7,7 @@ const connection = mysql.createConnection({
   // database: process.env.DB_NAME,
   host: "103.200.22.212",
   user: "hoatuoi1",
-  password: "Angular@123",
+  password: "01684018015Ky",
   database: "hoatuoi1_angular",
   port: 3306,
 });

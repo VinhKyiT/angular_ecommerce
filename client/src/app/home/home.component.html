@@ -47,7 +47,9 @@
         [short_desc]="n.short_desc"
         [category]="n.category"
         [quantity]="n.quantity"
-        [onAdd]="cartService.addProduct.bind(cartService)"
+        [onAdd]="
+          n.quantity > 0 ? cartService.addProduct.bind(cartService) : null
+        "
       >
       </app-product-card>
     </div>
