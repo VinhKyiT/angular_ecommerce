@@ -83,3 +83,23 @@ module.exports.addProduct = async (req, res) => {
       }
   );
 }
+
+module.exports.updateProductById = async (req, res) => {
+    const { productId } = req.params;
+    const { title, image, images, description, price, quantity, cat_id } = req.body;
+    db.query(
+        `UPDATE products  
+      SET 
+        title="${title ?? " "}",
+        image="${image ?? " "}",images="${images ?? " "}",
+        description="${description ?? " "}",price=${price ?? 0},
+        quantity=${quantity ?? 0},
+        cat_id=${cat_id ?? null}
+      WHERE 
+        id = ${productId}`,
+        (err, results) => {
+            if (err) console.log(err);
+            else console.log(results);
+        }
+    );
+};
