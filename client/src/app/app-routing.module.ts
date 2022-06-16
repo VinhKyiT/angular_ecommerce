@@ -1,3 +1,4 @@
+import { ShopComponent } from './shop/shop.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CartComponent } from './cart/cart.component';
@@ -30,6 +31,10 @@ const routes: Routes = [
     path: 'order-history',
     component: OrderHistoryComponent,
     canActivate: [AuthGuardService],
+  },
+  {
+    path: 'shop',
+    component: ShopComponent,
   },
 ];
 
