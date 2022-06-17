@@ -25,4 +25,16 @@ router.get("/:cateId", async (req, res) => {
   );
 });
 
+// GET CATEGORY BY TITLE
+router.get("/title/:cateTitle", async (req, res) => {
+  const { cateTitle } = req.params;
+  db.query(
+    `SELECT c.id, c.title FROM categories c WHERE c.title = '${cateTitle}'`,
+    (err, results) => {
+      if (err) console.log(err);
+      else res.json(results[0]);
+    }
+  );
+});
+
 module.exports = router;

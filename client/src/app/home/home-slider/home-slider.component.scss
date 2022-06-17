@@ -29,3 +29,11 @@
     }
   }
 }
+@media screen and (max-width: 1024px) {
+  .slider {
+    &__container {
+      width: 70%;
+      height: 400px;
+    }
+  }
+}

@@ -88,7 +88,7 @@ module.exports.addProduct = async (req, res) => {
 module.exports.updateProductById = async (req, res) => {
   const { productId } = req.params;
   const { title, image, images, description, price, quantity, cat_id } =
-    req.body;
+    req.body.product;
   db.query(
     `UPDATE products
       SET
