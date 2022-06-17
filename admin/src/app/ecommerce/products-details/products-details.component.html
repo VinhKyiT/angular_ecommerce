@@ -1,0 +1,387 @@
+<!--breadcrumb-->
+<div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+  <div class="breadcrumb-title pe-3">eCommerce</div>
+  <div class="ps-3">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb mb-0 p-0">
+        <li class="breadcrumb-item">
+          <a href="#" (click)="$event.preventDefault()"
+            ><i class="bx bx-home-alt"></i
+          ></a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">
+          Products Details / {{ product.title }}
+        </li>
+      </ol>
+    </nav>
+  </div>
+  <div class="ms-auto">
+    <div class="col">
+      <!-- Button trigger modal -->
+      <button
+        type="button"
+        class="btn btn-primary"
+        data-bs-toggle="modal"
+        data-bs-target="#exampleScrollableModal"
+      >
+        Edit Product
+      </button>
+      <!-- Modal -->
+      <div
+        class="modal fade"
+        id="exampleScrollableModal"
+        tabindex="-1"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-dialog-scrollable modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Update Product</h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <div class="form-body mt-4">
+                <div class="row">
+                  <div class="col-lg-8">
+                    <div class="border border-3 p-4 rounded">
+                      <div class="mb-3">
+                        <label for="inputProductTitle" class="form-label"
+                          >Product Title</label
+                        >
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="inputProductTitle"
+                          placeholder="Enter product title"
+                          name="title"
+                          [(ngModel)]="product.title"
+                        />
+                      </div>
+                      <div class="mb-3">
+                        <label for="inputProductDescription" class="form-label"
+                          >Description</label
+                        >
+                        <textarea
+                          class="form-control"
+                          id="inputProductDescription"
+                          rows="4"
+                          placeholder="Enter product description"
+                          name="description"
+                          [(ngModel)]="product.description"
+                        ></textarea>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-4">
+                    <div class="border border-3 p-4 rounded">
+                      <div class="row g-3">
+                        <div class="col-md-12">
+                          <label for="inputPrice" class="form-label"
+                            >Price</label
+                          >
+                          <input
+                            type="number"
+                            class="form-control"
+                            id="inputPrice"
+                            placeholder="00.00"
+                            name="price"
+                            [(ngModel)]="product.price"
+                          />
+                        </div>
+                        <div class="col-12">
+                          <label for="inputCategory" class="form-label"
+                            >Category</label
+                          >
+                          <select
+                            [(ngModel)]="categorySelected"
+                            name="category"
+                            class="form-select"
+                            id="inputCategory"
+                          >
+                            <option [value]="currentCategory.id" selected>
+                              {{ currentCategory.title }}
+                            </option>
+                            <option
+                              *ngFor="let cate of listCategory"
+                              [value]="cate.id"
+                            >
+                              {{ cate.title }}
+                            </option>
+                          </select>
+                        </div>
+                        <div class="col-12">
+                          <label for="inputProductTags" class="form-label"
+                            >Product Tags</label
+                          >
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="inputProductTags"
+                            placeholder="Enter Product Tags"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!--end row-->
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+              <button
+                type="button"
+                class="btn btn-primary"
+                id="submitBtn"
+                data-bs-dismiss="modal"
+                (click)="onUpdateProduct()"
+              >
+                Save changes
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--end breadcrumb-->
+
+<div class="card">
+  <div class="row g-0">
+    <div class="col-md-4 border-end">
+      <img src="{{ product.image }}" class="img-fluid p-5" alt="..." />
+      <div class="row mb-3 row-cols-auto g-2 justify-content-center mt-3">
+        <div class="col" *ngFor="let image of showcaseImages; index as i">
+          <img
+            src="{{ image }}"
+            width="70"
+            class="border rounded cursor-pointer"
+            alt=""
+          />
+        </div>
+      </div>
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h4 class="card-title">{{ product.title }}</h4>
+        <div class="d-flex gap-3 py-3">
+          <div class="cursor-pointer">
+            <i class="bx bxs-star text-warning"></i>
+            <i class="bx bxs-star text-warning"></i>
+            <i class="bx bxs-star text-warning"></i>
+            <i class="bx bxs-star text-warning"></i>
+            <i class="bx bxs-star text-secondary"></i>
+          </div>
+          <div>142 reviews</div>
+          <div class="text-success">
+            <i class="bx bxs-cart-alt align-middle"></i>
+            {{ product.quantity }} left
+          </div>
+        </div>
+        <div class="mb-3">
+          <span class="price h4">{{
+            product.price.toLocaleString("vi-VN", {
+              style: "currency",
+              currency: "VND"
+            })
+          }}</span>
+        </div>
+        <p class="card-text fs-6">
+          {{ product.description }}
+        </p>
+        <!-- <dl class="row">
+          <dt class="col-sm-3">Model#</dt>
+          <dd class="col-sm-9">Odsy-1000</dd>
+
+          <dt class="col-sm-3">Color</dt>
+          <dd class="col-sm-9">Brown</dd>
+
+          <dt class="col-sm-3">Delivery</dt>
+          <dd class="col-sm-9">Russia, USA, and Europe</dd>
+        </dl>
+        <hr />
+        <div
+          class="row row-cols-auto row-cols-1 row-cols-md-3 align-items-center"
+        >
+          <div class="col">
+            <label class="form-label">Quantity</label>
+            <div class="input-group input-spinner">
+              <button class="btn btn-white" type="button" id="button-plus">
+                +
+              </button>
+              <input type="text" class="form-control" value="1" />
+              <button class="btn btn-white" type="button" id="button-minus">
+                −
+              </button>
+            </div>
+          </div>
+          <div class="col">
+            <label class="form-label">Select size</label>
+            <div class="">
+              <label class="form-check form-check-inline">
+                <input
+                  type="radio"
+                  class="form-check-input"
+                  name="select_size"
+                  checked=""
+                  class="custom-control-input"
+                />
+                <div class="form-check-label">Small</div>
+              </label>
+              <label class="form-check form-check-inline">
+                <input
+                  type="radio"
+                  class="form-check-input"
+                  name="select_size"
+                  checked=""
+                  class="custom-control-input"
+                />
+                <div class="form-check-label">Medium</div>
+              </label>
+
+              <label class="form-check form-check-inline">
+                <input
+                  type="radio"
+                  class="form-check-input"
+                  name="select_size"
+                  checked=""
+                  class="custom-control-input"
+                />
+                <div class="form-check-label">Large</div>
+              </label>
+            </div>
+          </div>
+          <div class="col">
+            <label class="form-label">Select Color</label>
+            <div class="color-indigators d-flex align-items-center gap-2">
+              <div class="color-indigator-item bg-primary"></div>
+              <div class="color-indigator-item bg-danger"></div>
+              <div class="color-indigator-item bg-success"></div>
+              <div class="color-indigator-item bg-warning"></div>
+            </div>
+          </div>
+        </div>
+        <div class="d-flex gap-3 mt-3">
+          <a href="#" class="btn btn-primary">Buy Now</a>
+          <a href="#" class="btn btn-outline-primary"
+            ><span class="text">Add to cart</span>
+            <i class="bx bxs-cart-alt"></i
+          ></a>
+        </div> -->
+      </div>
+    </div>
+  </div>
+  <hr />
+  <div class="card-body">
+    <ul class="nav nav-tabs nav-primary mb-0" role="tablist">
+      <li class="nav-item" role="presentation">
+        <a
+          class="nav-link active"
+          data-bs-toggle="tab"
+          href="#primaryhome"
+          role="tab"
+          aria-selected="true"
+        >
+          <div class="d-flex align-items-center">
+            <div class="tab-icon">
+              <i class="bx bx-comment-detail font-18 me-1"></i>
+            </div>
+            <div class="tab-title">Product Description</div>
+          </div>
+        </a>
+      </li>
+      <li class="nav-item" role="presentation">
+        <a
+          class="nav-link"
+          data-bs-toggle="tab"
+          href="#primaryprofile"
+          role="tab"
+          aria-selected="false"
+        >
+          <div class="d-flex align-items-center">
+            <div class="tab-icon">
+              <i class="bx bx-bookmark-alt font-18 me-1"></i>
+            </div>
+            <div class="tab-title">Tags</div>
+          </div>
+        </a>
+      </li>
+      <li class="nav-item" role="presentation">
+        <a
+          class="nav-link"
+          data-bs-toggle="tab"
+          href="#primarycontact"
+          role="tab"
+          aria-selected="false"
+        >
+          <div class="d-flex align-items-center">
+            <div class="tab-icon">
+              <i class="bx bx-star font-18 me-1"></i>
+            </div>
+            <div class="tab-title">Reviews</div>
+          </div>
+        </a>
+      </li>
+    </ul>
+    <div class="tab-content pt-3">
+      <div class="tab-pane fade show active" id="primaryhome" role="tabpanel">
+        <p>{{ product.description }}</p>
+      </div>
+      <div class="tab-pane fade" id="primaryprofile" role="tabpanel">
+        <p>no tags</p>
+      </div>
+      <div class="tab-pane fade" id="primarycontact" role="tabpanel">
+        <p>no reviews</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<h6 class="text-uppercase mb-0">Related Product</h6>
+<hr />
+<div class="row row-cols-1 row-cols-lg-3">
+  <div class="col">
+    <div class="card">
+      <div class="row g-0">
+        <div class="col-md-4">
+          <img
+            src="assets/images/products/17.png"
+            class="img-fluid"
+            alt="..."
+          />
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h6 class="card-title">Black Cover iPhone 8</h6>
+            <div class="cursor-pointer my-2">
+              <i class="bx bxs-star text-warning"></i>
+              <i class="bx bxs-star text-warning"></i>
+              <i class="bx bxs-star text-warning"></i>
+              <i class="bx bxs-star text-warning"></i>
+              <i class="bx bxs-star text-warning"></i>
+            </div>
+            <div class="clearfix">
+              <p class="mb-0 float-start fw-bold">
+                <span class="me-2 text-decoration-line-through text-secondary"
+                  >$179</span
+                ><span>$110</span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
