@@ -121,3 +121,23 @@ exports.getOrders = async (params) => {
     );
   });
 };
+
+exports.getAllOrdersService = async () => {
+  return new Promise((resolve, reject) => {
+    db.query(
+      `SELECT * FROM orders INNER JOIN orders_details ON ( orders.id = orders_details.order_id ) INNER JOIN users ON ( orders.user_id = users.id )`,
+      (err, result) => {
+        if (err) reject({ message: err, statusCode: 500 });
+
+        if (result.length === 0)
+          reject({ message: "No order were found", statusCode: 400 });
+
+        resolve({
+          statusCode: 200,
+          message: `${result.length} orders were found`,
+          data: result,
+        });
+      }
+    );
+  });
+};

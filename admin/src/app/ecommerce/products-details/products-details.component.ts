@@ -34,7 +34,7 @@ export class ProductsDetailsComponent implements OnInit {
     this._route.paramMap
       .pipe(
         map((param: any) => {
-          return param.params.id;
+          return param?.params?.id;
         })
       )
       .subscribe((productId) => {
@@ -43,10 +43,10 @@ export class ProductsDetailsComponent implements OnInit {
         this._product.getSingleProduct(productId).subscribe((product) => {
           console.log(product);
           this.product = product;
-          if (product.quantity === 0) this.quantity = 0;
+          if (product?.quantity === 0) this.quantity = 0;
           else this.quantity = 1;
 
-          if (product.images) {
+          if (product?.images) {
             this.showcaseImages = product.images.split(';');
           }
           this.loading = false;
@@ -55,7 +55,7 @@ export class ProductsDetailsComponent implements OnInit {
     this._category.getAllCategories().subscribe((res) => {
       this.listCategory = [...res];
       this.currentCategory = this.listCategory.filter(
-        (c) => c.title === this.product.category
+        (c) => c?.title === this.product.category
       )[0];
       if (this.currentCategory) {
         this.categorySelected = this.currentCategory.id;

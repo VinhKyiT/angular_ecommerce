@@ -10,7 +10,7 @@
           ></a>
         </li>
         <li class="breadcrumb-item active" aria-current="page">
-          Products Details / {{ product.title }}
+          Products Details / {{ product?.title }}
         </li>
       </ol>
     </nav>
@@ -103,14 +103,14 @@
                             class="form-select"
                             id="inputCategory"
                           >
-                            <option [value]="currentCategory.id" selected>
-                              {{ currentCategory.title }}
+                            <option [value]="currentCategory?.id" selected>
+                              {{ currentCategory?.title }}
                             </option>
                             <option
                               *ngFor="let cate of listCategory"
-                              [value]="cate.id"
+                              [value]="cate?.id"
                             >
-                              {{ cate.title }}
+                              {{ cate?.title }}
                             </option>
                           </select>
                         </div>

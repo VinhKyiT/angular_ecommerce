@@ -11,6 +11,7 @@ import { SidebarService } from '../sidebar/sidebar.service';
 export class NavbarComponent implements OnInit {
   fname: String;
   email: String;
+  photoUrl: String;
   constructor(
     public sidebarservice: SidebarService,
     private _token: TokenStorageService,
@@ -34,9 +35,10 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit() {
-    const { id, fname, email } = this._token.getUser();
+    const { id, fname, email, photoUrl } = this._token.getUser();
     this.fname = fname;
     this.email = email;
+    this.photoUrl = photoUrl;
     /* Search Bar */
     $(document).ready(function () {
       $('.mobile-search-icon').on('click', function () {
