@@ -81,6 +81,14 @@ export class CheckoutComponent implements OnInit {
       : false;
   }
 
+  //replace card number input with space
+  cardNumberChange(event) {
+    this.cardNumber = event
+      .replace(/[^\d0-9]/g, '')
+      .replace(/(.{4})/g, '$1 ')
+      .trim();
+  }
+
   nextStep(): void {
     this.currentStep += 1;
     localStorage.setItem('checkoutStep', this.currentStep.toString());
@@ -127,13 +135,13 @@ export class CheckoutComponent implements OnInit {
     {
       name: 'ZIP',
       placeholder: 'Enter your zip code',
-      type: 'text',
+      type: 'number',
       value: '',
     },
     {
       name: 'Telephone',
       placeholder: 'Enter your telephone number',
-      type: 'text',
+      type: 'number',
       value: '',
     },
   ];

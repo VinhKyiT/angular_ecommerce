@@ -76,17 +76,4 @@ export class ProductsDetailsComponent implements OnInit {
         console.log(err);
       };
   }
-
-  addToCart(): void {
-    if (this.quantity > 0) {
-      this._cart.addProduct({
-        id: this.id,
-        price: this.product.price,
-        quantity: this.quantity,
-        image: this.product.image,
-        title: this.product.title,
-        maxQuantity: this.product.quantity,
-      });
-    }
-  }
 }

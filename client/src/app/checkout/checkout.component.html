@@ -116,6 +116,7 @@
                 name="cardNumber"
                 [(value)]="cardNumber"
                 [(ngModel)]="cardNumber"
+                (ngModelChange)="cardNumberChange($event)"
               />
             </div>
             <div class="inputBox">

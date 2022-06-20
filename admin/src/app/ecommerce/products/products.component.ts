@@ -19,14 +19,13 @@ export class ProductsComponent implements OnInit {
 
   constructor(
     private ProductService: ProductService,
-    private CategoryService: CategoryService,
-    private CartService: CartService
+    private CategoryService: CategoryService
   ) {}
 
   ngOnInit(): void {
     this.loading = true;
     setTimeout(() => {
-      this.ProductService.getAllProducts(9, this.productPageCounter).subscribe(
+      this.ProductService.getAllProducts().subscribe(
         (res: any) => {
           console.log(res);
           this.products = res;
@@ -45,27 +44,6 @@ export class ProductsComponent implements OnInit {
         (err) => {
           console.log(err);
           this.loading = false;
-        }
-      );
-    }, 500);
-  }
-  showMoreProducts(): void {
-    this.additionalLoading = true;
-    this.productPageCounter = this.productPageCounter + 1;
-    setTimeout(() => {
-      this.ProductService.getAllProducts(9, this.productPageCounter).subscribe(
-        (res: any) => {
-          console.log({ res });
-          if (res?.length === 0) {
-            console.log('end list');
-            this.isEndList = true;
-          }
-          this.products = [...this.products, ...res];
-          this.additionalLoading = false;
-        },
-        (err) => {
-          console.log(err);
-          this.additionalLoading = false;
         }
       );
     }, 500);
