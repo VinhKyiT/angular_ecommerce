@@ -4,6 +4,8 @@ const orderController = require("../controllers/orderController");
 
 router.get("/", orderController.get_orders);
 
+router.get("/all", orderController.getAllOrders);
+
 router.get("/single", orderController.get_single_order);
 
 router.post("/create", orderController.create_order);

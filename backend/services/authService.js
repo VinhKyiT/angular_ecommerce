@@ -26,14 +26,14 @@ exports.loginUser = async (params) => {
           });
         }
 
-        if (result.length === 0) {
+        if (result?.length === 0) {
           reject({
             message: "Wrong credentials, please try again",
             statusCode: 400,
           });
         }
 
-        if (result.length > 0) {
+        if (result?.length > 0) {
           const token = jwt.sign({ data: result }, "secret");
           resolve({
             message: "Logged in successfully",
@@ -58,18 +58,18 @@ exports.registerUser = async (params) => {
       `SELECT email FROM users WHERE email = ?`,
       [email],
       (err, result) => {
-        if (result.length > 0) {
+        if (result?.length > 0) {
           reject({
             message: "Email address is in use, please try a different one",
             statusCode: 400,
           });
-        } else if (result.length === 0) {
+        } else if (result?.length === 0) {
           db.query(
             `INSERT INTO users (fname, email, password) VALUES (?,?,?)`,
             [fullName, email, hashedPassword],
             (err, result) => {
               if (err) {
-                console.log({err})
+                console.log({ err });
                 reject({
                   message: "Something went wrong, please try again",
                   statusCode: 400,

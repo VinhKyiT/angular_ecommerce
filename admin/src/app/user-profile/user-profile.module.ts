@@ -1,3 +1,4 @@
+import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -6,13 +7,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { UserProfileComponent } from './user-profile.component';
 
-
 @NgModule({
   declarations: [UserProfileComponent],
-  imports: [
-    CommonModule,
-    UserProfileRoutingModule,
-    NgbModule
-  ]
+  imports: [CommonModule, UserProfileRoutingModule, NgbModule, FormsModule],
 })
-export class UserProfileModule { }
+export class UserProfileModule {}
