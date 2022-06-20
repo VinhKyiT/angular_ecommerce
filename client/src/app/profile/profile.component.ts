@@ -23,6 +23,12 @@ export class ProfileComponent implements OnInit {
       type: 'email',
     },
     {
+      key: 'photoUrl',
+      label: 'Photo URL',
+      value: '',
+      type: 'text',
+    },
+    {
       key: 'password',
       label: 'Password',
       value: '',
@@ -49,16 +55,17 @@ export class ProfileComponent implements OnInit {
 
   // Update user fields with current details
   ngOnInit(): void {
-    const { id, fname, email } = this._token.getUser();
-    console.log({ id, fname, email });
+    const { id, fname, email, photoUrl } = this._token.getUser();
+    console.log({ id, fname, email, photoUrl });
     this.userId = id;
     this.user[0].value = fname;
     this.user[1].value = email;
+    this.user[2].value = photoUrl;
     console.log(this.user);
   }
 
   canUpdate(): boolean {
-    return this.user.filter((field) => field.value.length > 0).length !== 4
+    return this.user.filter((field) => field?.value?.length > 0).length !== 5
       ? true
       : false;
   }
@@ -66,7 +73,7 @@ export class ProfileComponent implements OnInit {
   // Submit data to be updated
   onSubmit(): void {
     this.alertVisible = false;
-    if (this.user[2].value !== this.user[3].value) {
+    if (this.user[3].value !== this.user[4].value) {
       this.alertType = 'error';
       this.alertMessage = 'Passwords do not match';
       this.alertVisible = true;
@@ -76,7 +83,8 @@ export class ProfileComponent implements OnInit {
         .putTypeRequest(`users/${this.userId}`, {
           fullName: this.user[0].value,
           email: this.user[1].value,
-          password: this.user[2].value,
+          photoUrl: this.user[2].value,
+          password: this.user[3].value,
         })
         .subscribe(
           (res: any) => {
@@ -91,8 +99,8 @@ export class ProfileComponent implements OnInit {
               fname: this.user[0].value,
               email: this.user[1].value,
             });
-            this.user[2].value = '';
             this.user[3].value = '';
+            this.user[4].value = '';
             // window.location.reload();
           },
           (err: any) => {

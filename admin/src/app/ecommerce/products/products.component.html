@@ -134,7 +134,11 @@
         </div>
       </div> -->
       <div class="card-body">
-        <h6 class="card-title cursor-pointer">{{ n.title }}</h6>
+        <h6 class="card-title cursor-pointer">
+          {{
+            n.title?.length > 30 ? n.title?.substring(0, 30) + "..." : n.title
+          }}
+        </h6>
         <div class="clearfix">
           <p class="mb-0 float-start">
             <strong>{{ n.quantity }}</strong> left

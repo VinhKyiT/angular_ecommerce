@@ -30,15 +30,21 @@ export class AuthService {
       })
       .pipe(
         map((res: any) => {
-          let user = {
-            email: credentials.email,
-            token: res.token,
-          };
-          this._token.setToken(res.token);
-          this._token.setUser(res.data[0]);
-          console.log(res);
-          this.userSubject.next(user);
-          return user;
+          console.log({ data: res.data[0] });
+          if (res?.data[0]?.role === 777) {
+            let user = {
+              email: credentials.email,
+              token: res.token,
+            };
+            this._token.setToken(res.token);
+            this._token.setUser(res.data[0]);
+            console.log(res);
+            this.userSubject.next(user);
+            return user;
+          } else {
+            console.log('not admin');
+            return null;
+          }
         })
       );
   }

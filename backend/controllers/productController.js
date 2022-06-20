@@ -71,16 +71,27 @@ module.exports.getProductByCategory = async (req, res) => {
 };
 
 module.exports.addProduct = async (req, res) => {
-  const { title, image, images, description, price, quantity, cat_id } =
-    req.body;
+  const {
+    title,
+    image,
+    images,
+    description,
+    price,
+    quantity,
+    short_desc,
+    cat_id,
+  } = req.body;
   db.query(
-    `INSERT INTO products (title, image, images, description, price, quantity, cat_id)
+    `INSERT INTO products (title, image, images, description, short_desc, price, quantity, cat_id)
       VALUES ("${title ?? ""}","${image ?? ""}","${images ?? ""}","${
       description ?? ""
-    }",${price ?? 0},${quantity ?? 0},${cat_id ?? 0})`,
+    }","${short_desc ?? ""}",${price ?? 0},${quantity ?? 0},${cat_id ?? 0})`,
     (err, results) => {
       if (err) console.log(err);
-      else console.log(results);
+      else {
+        console.log(results);
+        res.json({ message: "success", results });
+      }
     }
   );
 };
@@ -101,7 +112,10 @@ module.exports.updateProductById = async (req, res) => {
         id = ${productId}`,
     (err, results) => {
       if (err) console.log(err);
-      else console.log(results);
+      else {
+        console.log(results);
+        res.json({ message: "success", results });
+      }
     }
   );
 };

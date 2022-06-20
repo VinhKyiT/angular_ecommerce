@@ -40,4 +40,10 @@ export class ProductService {
       },
     });
   }
+
+  addProduct(product: any): Observable<any> {
+    return this.http.post<Product>(this.url + 'products/add', {
+      ...product,
+    });
+  }
 }
