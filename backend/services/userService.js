@@ -6,7 +6,7 @@ exports.updateUser = async (params) => {
   const { error } = updateUserValidation(params);
   if (error) throw { message: error.details[0].message, statusCode: 400 };
 
-  const { userId, fullName, email, password } = params;
+  const { userId, fullName, email, password, photoUrl } = params;
   const hashedPassword = md5(password.toString());
 
   return new Promise((resolve, reject) => {
@@ -22,7 +22,12 @@ exports.updateUser = async (params) => {
             statusCode: 400,
           });
         } else {
-          if (email === result[0].email && fullName === result[0].fname) {
+          console.log(result[0]);
+          if (
+            email === result[0].email &&
+            fullName === result[0].fname &&
+            photoUrl === result[0].photoUrl
+          ) {
             reject({
               message: "No new data has been provided",
               statusCode: 400,
@@ -32,11 +37,11 @@ exports.updateUser = async (params) => {
           let query = "";
 
           if (email !== result[0].email && fullName !== result[0].fname) {
-            query = `fname = '${fullName}', email = '${email}'`;
+            query = `fname = '${fullName}', email = '${email}', photoUrl = '${photoUrl}'`;
           } else if (email !== result[0].email) {
-            query = `email = '${email}'`;
+            query = `email = '${email}', photoUrl = '${photoUrl}'`;
           } else {
-            query = `fname = '${fullName}'`;
+            query = `fname = '${fullName}', photoUrl = '${photoUrl}'`;
           }
 
           db.query(

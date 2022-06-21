@@ -50,99 +50,146 @@
     <h5 class="card-title">Add New Product</h5>
     <hr />
     <div class="form-body mt-4">
-      <div class="row">
-        <div class="col-lg-8">
-          <div class="border border-3 p-4 rounded">
-            <div class="mb-3">
-              <label for="inputProductTitle" class="form-label"
-                >Product Title</label
-              >
-              <input
-                type="email"
-                class="form-control"
-                id="inputProductTitle"
-                placeholder="Enter product title"
-              />
-            </div>
-            <div class="mb-3">
-              <label for="inputProductDescription" class="form-label"
-                >Description</label
-              >
-              <textarea
-                class="form-control"
-                id="inputProductDescription"
-                rows="3"
-              ></textarea>
-            </div>
-            <div class="mb-3">
-              <label for="inputProductDescription" class="form-label"
-                >Product Images</label
-              >
-              <input
-                id="image-uploadify"
-                type="file"
-                accept=".xlsx,.xls,image/*,.doc,audio/*,.docx,video/*,.ppt,.pptx,.txt,.pdf"
-                multiple
-              />
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4">
-          <div class="border border-3 p-4 rounded">
-            <div class="row g-3">
-              <div class="col-md-6">
-                <label for="inputPrice" class="form-label">Price</label>
-                <input
-                  type="email"
-                  class="form-control"
-                  id="inputPrice"
-                  placeholder="00.00"
-                />
-              </div>
-              <div class="col-md-6">
-                <label for="inputCompareatprice" class="form-label"
-                  >Compare at Price</label
-                >
-                <input
-                  type="password"
-                  class="form-control"
-                  id="inputCompareatprice"
-                  placeholder="00.00"
-                />
-              </div>
-              <div class="col-12">
-                <label for="inputProductType" class="form-label"
-                  >Category</label
-                >
-                <select class="form-select" id="inputProductType">
-                  <option></option>
-                  <option value="1">One</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option>
-                </select>
-              </div>
-              <div class="col-12">
-                <label for="inputProductTags" class="form-label"
-                  >Product Tags</label
+      <form>
+        <div class="row">
+          <div class="col-lg-8">
+            <div class="border border-3 p-4 rounded">
+              <div class="mb-3">
+                <label for="inputProductTitle" class="form-label"
+                  >Product Title</label
                 >
                 <input
                   type="text"
                   class="form-control"
-                  id="inputProductTags"
-                  placeholder="Enter Product Tags"
+                  id="inputProductTitle"
+                  placeholder="Enter product title"
+                  name="productTitle"
+                  [(ngModel)]="product.title"
                 />
               </div>
-              <div class="col-12">
-                <div class="d-grid">
-                  <button type="button" class="btn btn-primary">
-                    Save Product
-                  </button>
+              <div class="mb-3">
+                <label for="inputProductDescription" class="form-label"
+                  >Description</label
+                >
+                <textarea
+                  class="form-control"
+                  id="inputProductDescription"
+                  rows="3"
+                  placeholder="Enter product description"
+                  name="productDescription"
+                  [(ngModel)]="product.description"
+                ></textarea>
+              </div>
+              <div class="mb-3">
+                <label for="inputProductTitle" class="form-label"
+                  >Product Image</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="inputProductImage"
+                  placeholder="Enter product image url"
+                  name="productImage"
+                  [(ngModel)]="product.image"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="inputProductImages" class="form-label"
+                  >Images</label
+                >
+                <textarea
+                  class="form-control"
+                  id="inputProductImages"
+                  rows="2"
+                  placeholder="Enter product images, separated by ;"
+                  name="productImages"
+                  [(ngModel)]="product.images"
+                ></textarea>
+              </div>
+              <div class="mb-3">
+                <label for="inputProductDescription" class="form-label"
+                  >Product Images</label
+                >
+                <input
+                  id="image-uploadify"
+                  type="file"
+                  accept="image/*,video/*"
+                  multiple
+                />
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="border border-3 p-4 rounded">
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label for="inputPrice" class="form-label">Price</label>
+                  <input
+                    type="number"
+                    class="form-control"
+                    id="inputPrice"
+                    placeholder="Eg: 10000"
+                    name="productPrice"
+                    [(ngModel)]="product.price"
+                  />
+                </div>
+                <div class="col-md-6">
+                  <label for="inputQuantity" class="form-label">Quantity</label>
+                  <input
+                    type="number"
+                    class="form-control"
+                    id="inputQuantity"
+                    placeholder="Eg: 100"
+                    name="productQuantity"
+                    [(ngModel)]="product.quantity"
+                  />
+                </div>
+                <div class="col-12">
+                  <label for="inputProductType" class="form-label"
+                    >Category</label
+                  >
+                  <select
+                    class="form-select"
+                    id="inputProductType"
+                    name="productCategory"
+                    [(ngModel)]="product.cat_id"
+                  >
+                    <option
+                      *ngFor="let cate of listCategory"
+                      [value]="cate?.id"
+                    >
+                      {{ cate?.title }}
+                    </option>
+                  </select>
+                </div>
+                <div class="col-12">
+                  <label for="inputProductTags" class="form-label"
+                    >Product Tags</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="inputProductTags"
+                    placeholder="Enter Product Tags"
+                  />
+                </div>
+                <div class="col-12">
+                  <div class="d-grid">
+                    <button
+                      type="button"
+                      class="btn btn-primary"
+                      (click)="onSubmit()"
+                      [disabled]="!canUpdate()"
+                    >
+                      Save Product
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </form>
       <!--end row-->
     </div>
   </div>
