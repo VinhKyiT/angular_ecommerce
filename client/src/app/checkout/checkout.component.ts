@@ -65,8 +65,8 @@ export class CheckoutComponent implements OnInit {
   }
 
   canBillingSubmit(): boolean {
-    return this.billingAddress.filter((field) => field.value.length > 0)
-      .length !== 7
+    return this.billingAddress?.filter((field) => field?.value?.length > 0)
+      ?.length !== 7
       ? true
       : false;
   }

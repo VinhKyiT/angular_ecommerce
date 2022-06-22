@@ -44,7 +44,7 @@ export class OrderHistoryComponent implements OnInit {
     this._api.getTypeRequest(`orders/?userId=${this.user.id}`).subscribe(
       (res: any) => {
         console.log(res);
-        res.data.forEach((item) => {
+        res?.data?.forEach((item) => {
           this._product
             .getSingleProduct(item.product_id)
             .subscribe((product) => {

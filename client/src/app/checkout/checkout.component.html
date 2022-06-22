@@ -17,12 +17,12 @@
           class="input-container"
           *ngFor="let field of billingAddress; index as i"
         >
-          <label for="">{{ field.name }}</label>
+          <label for="">{{ field?.name }}</label>
           <input
             nz-input
-            [type]="field.type"
-            [name]="field.name"
-            [placeholder]="field.placeholder"
+            [type]="field?.type"
+            [name]="field?.name"
+            [placeholder]="field?.placeholder"
             [(value)]="field.value"
             [(ngModel)]="field.value"
           />
